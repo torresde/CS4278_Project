@@ -1,5 +1,6 @@
 # CS4278_Project
 
+## Interview
 	1.	Why would you use a text to find out what time club meetings are?
 	  ⁃	There’s nowhere I could go to check when the times for club meetings. It would be nice to have somewhere besides email to check when my club meetings are.
 	  ⁃	I would like the ease and fluidity that this text messaging app offers.
@@ -40,3 +41,27 @@
 	  ⁃	Yes I should be able to remove meeting times as well and I might want it to send a notification so the members know it’s removed.
 	  ⁃	Yes if the meeting was made by accident or if it was rescheduled.
 	  ⁃	Yeah because sometimes meetings get cancelled in real life.
+
+
+## Requirements
+
+There should be a club leader mode and a club member mode.
+
+As club leader you should be able to:
+* Register your club so other members can subscribe to it
+* Add meetings for your club
+* Delete meetings you've set for your club
+* Send a text to registered club members when you add a meeting
+
+As club member you should be able to:
+* Register to a club to receive notifications
+* Unregister from a club
+* Request the next meeting time for a specific club and receive the time and location
+	
+
+## Development Approach
+The process will be to use an Agile workflow to meet with the prospective users hopefully twice to ensure that I am building an app that addresses the pain points of the users.
+
+At the first meeting with prospective users I want to have completed the Minimum Viable Product of being able to request the meeting information for a specific club as a club member and for adding and removing club meetings as the club leader. The application should be ready for this demo by mid to late week next week.
+
+For the second meeting I will have completed all of the requirements listed above for this application. The application should be at this stage in about a week and a half. The requirements may change depending on feedback from the users, which will ensure that I avoid building functionality that does not add value to the users. The Agile work process is effective because meeting with the users ensures that the engineers' goals are aligned with the users' desires.
