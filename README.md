@@ -51,8 +51,8 @@
 * Request the meeting times for a specific club and receive the times
 
 ## Stretch Goal
-Add the ability for a club leader mode and a club member mode.
-Add the ability to automatically send an update to registered members when a meeting time is added.
+* Add the ability for a club leader mode and a club member mode.
+* Add the ability to automatically send an update to registered members when a meeting time is added.
 
 ## Development Approach
 The process will be to use an Agile workflow to meet with the prospective users hopefully twice to ensure that I am building an app that addresses the pain points of the users.
