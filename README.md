@@ -44,19 +44,14 @@
 
 
 ## Requirements
-
-There should be a club leader mode and a club member mode.
-
-As club leader you should be able to:
 * Register your club so other members can subscribe to it
 * Add meetings for your club
 * Send a text to registered club members
-
-As club member you should be able to:
 * Register to a club to receive messages
 * Request the meeting times for a specific club and receive the times
 
 ## Stretch Goal
+Add the ability for a club leader mode and a club member mode.
 Add the ability to automatically send an update to registered members when a meeting time is added.
 
 ## Development Approach
