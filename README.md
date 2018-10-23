@@ -55,7 +55,9 @@ As club leader you should be able to:
 As club member you should be able to:
 * Register to a club to receive messages
 * Request the meeting times for a specific club and receive the times
-	
+
+## Stretch Goal
+Add the ability to automatically send an update to registered members when a meeting time is added.
 
 ## Development Approach
 The process will be to use an Agile workflow to meet with the prospective users hopefully twice to ensure that I am building an app that addresses the pain points of the users.
