@@ -50,13 +50,11 @@ There should be a club leader mode and a club member mode.
 As club leader you should be able to:
 * Register your club so other members can subscribe to it
 * Add meetings for your club
-* Delete meetings you've set for your club
-* Send a text to registered club members when you add a meeting
+* Send a text to registered club members
 
 As club member you should be able to:
-* Register to a club to receive notifications
-* Unregister from a club
-* Request the next meeting time for a specific club and receive the time and location
+* Register to a club to receive messages
+* Request the meeting times for a specific club and receive the times
 	
 
 ## Development Approach
