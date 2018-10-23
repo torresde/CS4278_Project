@@ -7,8 +7,6 @@
 
 (def cs4278-brightspace "https://brightspace.vanderbilt.edu/d2l/home/85892")
 
-(defn log [a] (println a) a)
-
 (def instructor-hours {"tuesday"  {:start    8
                                    :end      10
                                    :location "the chairs outside of the Wondry"}
@@ -92,9 +90,6 @@
            (experts-question-msg experts (rest args))]))
 
 (defn answer-question [conversation {:keys [args]}]
-  (println "answer-question start.")
-  (log conversation)
-  (println "answer-question end.")
   (cond (empty? args) [[] "You did not provide an answer."]
         (empty? conversation) [[] "You haven't been asked a question."]
         :else [[(into {} (action-send-msg (conversation :asker) (string/join " " args)))]
@@ -109,40 +104,59 @@
   (fn [_ & args]
     [[] (apply f args)]))
 
+; #############################################################################
+; Assignment 5
+; #############################################################################
+
+; This function gets all of the members for a given club
 (defn members-on-club-query [state-mgr pmsg]
   (let [[club]  (:args pmsg)]
     (list! state-mgr [:member club])))
 
+; This function gets all of the meetings for a given club
 (defn meetings-on-club-query [state-mgr pmsg]
   (let [[club]  (:args pmsg)]
     (list! state-mgr [:meetings club])))
 
+; This function prepares to store the registered member
 (defn members-register [members club id]
   (action-insert [:member club id] {}))
 
+; This function registers a member for a given club
 (defn add-member [members {:keys [args user-id]}]
   (if (empty? args)
     [[] "You did not provide a club."]
     [[(members-register members (first args) user-id)]
      (str user-id " is now a member in " (first args) ".")]))
 
+; This function prepares to store a meeting time
 (defn meetings-register [meetings club date]
   (action-insert [:meetings club date] {}))
 
+; This function adds a scheduled meeting for a given course
 (defn add-meeting [meetings {:keys [args]}]
   (if (< (count args) 3) [[] "You did not provide enough information."]
     [[(meetings-register meetings (first args) (str (second args) " at " (nth args 2)))]
      (str "Meeting on " (second args) " at " (nth args 2) " is now scheduled for " (first args) ".")]))
 
+; This function prepares the texts to be sent with the meeting times
 (defn action-send-mtgs [date id]
   (map #(action-send-msg id (str "Meeting on " (name %) ".")) date))
 
+; This message will respond with all of the meetings for a club
+; followed by a text summarizing how many meetings there are scheduled for the club
 (defn get-meeting [meetings {:keys [args user-id]}]
   (cond (empty? args) [[] "You did not provide a club"]
     (empty? meetings) [[] (str "There are no upcoming meetings for " (first args) ".")]
     :else [(into [] (action-send-mtgs meetings user-id))
            (str (count meetings) " upcoming meeting(s) for " (first args) ".")]))
 
+; This command will send a message to all of the members in a club
+(defn send-message [members {:keys [args]}]
+  (cond (empty? (rest args)) [[] (str "You must send a valid message.")]
+      (empty? members) [[] (str "There are no members in this club.")])
+  :else [(into [] (action-send-msgs members (string/join " " (rest args))))
+         (str "Message sent to " (count members) " members.")])
 
 (def routes {"default"  (stateless (fn [& args] "Unknown command."))
              "welcome"  (stateless welcome)
@@ -153,7 +167,8 @@
              "answer"   answer-question
              "member"   add-member
              "meeting"  add-meeting
-             "check"    get-meeting})
+             "check"    get-meeting
+             "send"     send-message})
 
 ;; Don't edit!
 (defn experts-on-topic-query [state-mgr pmsg]
@@ -172,7 +187,8 @@
    "answer" conversations-for-user-query
    "member" members-on-club-query
    "meeting" meetings-on-club-query
-   "check"  meetings-on-club-query})
+   "check"  meetings-on-club-query
+   "send"   members-on-club-query})
 
 
 ;; Don't edit!
